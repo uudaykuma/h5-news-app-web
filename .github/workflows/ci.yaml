@@ -80,6 +80,9 @@ jobs:
       - name: Build Docker image using Podman
         run: podman build --format docker -t udaykumar7697/my-dockerhub-image-app:latest .
 
+      - name: List Podman images after build
+        run: podman images
+
   upload:
     name: Upload
     runs-on: ubuntu-latest
@@ -94,7 +97,7 @@ jobs:
           username: ${{ secrets.DOCKER_USERNAME }} # Docker Hub username stored as a secret
           password: ${{ secrets.DOCKER_PASSWORD }} # Docker Hub password stored as a secret
 
-      - name: List Podman images
+      - name: List Podman images before push
         run: podman images
 
       - name: Push Docker image to Docker Hub
