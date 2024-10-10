@@ -84,7 +84,7 @@ jobs:
         run: podman save -o my-dockerhub-image-app.tar udaykumar7697/my-dockerhub-image-app:latest
 
       - name: Upload the tarball as an artifact
-        uses: actions/upload-artifact@v2
+        uses: actions/upload-artifact@v3 # Updated to v3
         with:
           name: podman-image-tarball
           path: my-dockerhub-image-app.tar
@@ -98,7 +98,7 @@ jobs:
         uses: actions/checkout@v2
 
       - name: Download the tarball
-        uses: actions/download-artifact@v2
+        uses: actions/download-artifact@v3 # Updated to v3
         with:
           name: podman-image-tarball
 
