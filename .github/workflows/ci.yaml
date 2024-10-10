@@ -78,7 +78,7 @@ jobs:
         run: sudo apt-get install podman -y # Install Podman
 
       - name: Build Docker image using Podman
-        run: podman build -t udaykumar7697/my-dockerhub-image-app:latest .
+        run: podman build --format docker -t udaykumar7697/my-dockerhub-image-app:latest .
 
   upload:
     name: Upload
@@ -98,8 +98,7 @@ jobs:
         run: podman images
 
       - name: Push Docker image to Docker Hub
-        run: |
-          docker push udaykumar7697/my-dockerhub-image-app:latest
+        run: podman push udaykumar7697/my-dockerhub-image-app:latest
 
   trigger_pipeline:
     name: Trigger CD Pipeline
