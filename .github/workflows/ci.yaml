@@ -97,7 +97,7 @@ jobs:
 
       - name: Push Docker image
         run: |
-         docker push udaykumar7697/vue-app:latest  # Replace with your Docker Hub username
+         docker push udaykumar7697/h5-news-app-web:latest  # Replace with your Docker Hub username
 
   trigger_pipeline:
     name: Trigger CD Pipeline
