@@ -97,7 +97,7 @@ jobs:
 
       - name: Push Docker image
         run: |
-         docker push udaykumar7697/h5-news-app-web:latest  # Replace with your Docker Hub username
+         podman push docker.io/udaykumar7697/h5-news-app-web
 
   trigger_pipeline:
     name: Trigger CD Pipeline
