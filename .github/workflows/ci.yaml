@@ -80,8 +80,14 @@ jobs:
       - name: Build Docker image using Podman
         run: podman build --format docker -t udaykumar7697/my-dockerhub-image-app:latest .
 
-      - name: List Podman images after build
-        run: podman images
+      - name: Save the image to a tarball
+        run: podman save -o my-dockerhub-image-app.tar udaykumar7697/my-dockerhub-image-app:latest
+
+      - name: Upload the tarball as an artifact
+        uses: actions/upload-artifact@v2
+        with:
+          name: podman-image-tarball
+          path: my-dockerhub-image-app.tar
 
   upload:
     name: Upload
@@ -90,6 +96,14 @@ jobs:
     steps:
       - name: Checkout code
         uses: actions/checkout@v2
+
+      - name: Download the tarball
+        uses: actions/download-artifact@v2
+        with:
+          name: podman-image-tarball
+
+      - name: Load the image from the tarball
+        run: podman load -i my-dockerhub-image-app.tar
 
       - name: Log in to Docker Hub
         uses: docker/login-action@v2
